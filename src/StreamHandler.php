@@ -55,7 +55,7 @@ class StreamHandler extends \Monolog\Handler\StreamHandler
 
         // 写入请求信息
         if ($this->withRequestInfo) {
-            $record['formatted'] .= RequestInfo::get() . PHP_EOL;
+            $record['formatted'] .= RequestInfo::get() . "\n";
         }
 
         // 写入前操作

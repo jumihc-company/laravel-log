@@ -13,7 +13,7 @@ use Monolog\Handler\HandlerInterface;
 use Monolog\Logger as Monolog;
 
 /**
- * 日志
+ * 自定义日志通道
  * @package Jmhc\Log
  */
 class JmhcLogger
@@ -70,7 +70,7 @@ class JmhcLogger
 
     public function __invoke(array $config)
     {
-        return new Monolog($this->parseChannel($config), [
+        return new Logger($config['with_message_line_break'], $this->parseChannel($config), [
             $this->prepareHandler(new StreamHandler(
                 $config['path'],
                 $config['debug'],

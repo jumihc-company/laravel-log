@@ -15,6 +15,7 @@ use Throwable;
  * @method static LogManager withDateToDir(bool $isBefore = true, string $format = 'Ymd')
  * @method static LogManager withDateToName(bool $isBefore = true, string $format = 'Ymd')
  * @method static LogManager withRequestInfo(bool $with = true)
+ * @method static LogManager withMessageLineBreak(bool $with = true)
  * @method static LogManager throwable(Throwable $e, array $context = [])
  * @package Jmhc\Log
  */

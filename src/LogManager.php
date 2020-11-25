@@ -41,6 +41,11 @@ class LogManager extends \Illuminate\Log\LogManager
     protected $withRequestInfo;
 
     /**
+     * @var bool
+     */
+    protected $withMessageLineBreak;
+
+    /**
      * @var string
      */
     protected $configKey = 'jmhc_log';
@@ -116,6 +121,18 @@ class LogManager extends \Illuminate\Log\LogManager
     }
 
     /**
+     * 添加消息换行
+     * @param bool $with
+     * @return $this
+     */
+    public function withMessageLineBreak(bool $with = true)
+    {
+        $this->withMessageLineBreak = $with;
+
+        return $this;
+    }
+
+    /**
      * 添加异常消息
      * @param Throwable $e
      * @param array $context
@@ -124,7 +141,7 @@ class LogManager extends \Illuminate\Log\LogManager
     public function throwable(Throwable $e, array $context = [])
     {
         // 保存消息
-        $msg = $e->getMessage() . PHP_EOL . $e->getTraceAsString();
+        $msg = $e->getMessage() . "\n" . $e->getTraceAsString();
 
         $this->emergency($msg, $context);
 
@@ -141,6 +158,7 @@ class LogManager extends \Illuminate\Log\LogManager
         $this->withDateToDir = null;
         $this->withDateToName = null;
         $this->withRequestInfo = false;
+        $this->withMessageLineBreak = false;
     }
 
     /**
@@ -207,6 +225,7 @@ class LogManager extends \Illuminate\Log\LogManager
         $config = parent::configurationFor($this->configKey);
         $config['path'] = $this->getPath();
         $config['with_request_info'] = $this->withRequestInfo;
+        $config['with_message_line_break'] = $this->withMessageLineBreak;
 
         return $config;
     }
