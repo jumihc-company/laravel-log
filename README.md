@@ -19,6 +19,7 @@ $ composer require jmhc/laravel-log
     - `withDateToDir(bool $isBefore = true, string $format = 'Ymd')` 给路径添加日期
     - `withDateToName(bool $isBefore = true, string $format = 'Ymd')` 给名称添加日期
     - `withRequestInfo(bool $with = true)` 日志添加请求消息
+    - `withMessageLineBreak(bool $with = true)` 日志添加消息换行
     - `throwable(Throwable $e, array $context = [])` 记录异常日志
 - 书写业务代码
 
